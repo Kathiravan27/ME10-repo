@@ -1,0 +1,24 @@
+Name: Maven Build
+
+On:
+Push:
+Pull_request:
+
+Jobs:
+Build:
+Runs-on: ubuntu-latest
+
+Steps:
+-	Name: Checkout repository
+    Uses: actions/checkout@v4
+
+-	Name: Set up Java
+    Uses: actions/setup-java@v4
+    With:
+      Java-version: ‘17’
+      Distribution: ‘temurin’
+      Cache: maven
+
+-	Name: Build with Maven
+    Run: mvn clean package
+
